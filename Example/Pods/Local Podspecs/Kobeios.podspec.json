@@ -23,13 +23,5 @@
     "Kobeios": [
       "Kobeios/Assets/*.png"
     ]
-  },
-  "dependencies": {
-    "R.swift": [
-
-    ],
-    "NVActivityIndicatorView": [
-
-    ]
   }
 }

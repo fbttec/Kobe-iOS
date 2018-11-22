@@ -10,7 +10,7 @@ import UIKit
 import Kobeios
 
 
-class ViewController: UIViewController, Stringable {
+class ViewController: UIViewController, Stringable{
     
     override func viewDidLoad() {
         super.viewDidLoad()
