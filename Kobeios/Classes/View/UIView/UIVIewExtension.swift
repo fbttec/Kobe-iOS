@@ -70,7 +70,6 @@ public extension UIView {
         }
         set {
             if newValue == true {
-                removeShadow()
                 addDefaultShadow()
             } else {
                 removeShadow()
@@ -125,14 +124,21 @@ public extension UIView {
     
     
     func addDefaultShadow() {
-        dropShadow(offsetX: 0, offsetY: 0, color: UIColor.black, opacity: 0.3, radius: 10)
+        dropShadow(offsetX: &shadowXOffset, offsetY: &shadowYOffset, color: UIColor.black, opacity: &shadowOpacity, radius: &shadowRadius)
     }
     
     func removeShadow() {
-         dropShadow(offsetX: 0, offsetY: 0, color: UIColor.black, opacity: 0, radius: 0)
+        layer.masksToBounds = false
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0
+        layer.shadowRadius = 0
+        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = 1
     }
     
-    func dropShadow(offsetX: CGFloat, offsetY: CGFloat, color: UIColor, opacity: Float, radius: CGFloat, scale: Bool = true) {
+    func dropShadow( offsetX: inout CGFloat, offsetY: inout CGFloat, color: UIColor, opacity: inout Float, radius: inout CGFloat, scale: Bool = true) {
         layer.masksToBounds = false
         layer.shadowOffset = CGSize(width: offsetX, height: offsetY)
         layer.shadowColor = color.cgColor
