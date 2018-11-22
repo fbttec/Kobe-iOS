@@ -18,8 +18,9 @@ public extension Stringable {
         return emailTest.evaluate(with: email)
     }
     
-    func isPasswordValid(password: String) -> Bool {
-        return password.count >= 5
+    func isPasswordValid(password: String, validatorRegex: String = ".{5,}") -> Bool {
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", validatorRegex)
+        return passwordTest.evaluate(with: password)
     }
     
 }
