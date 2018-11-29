@@ -139,14 +139,18 @@ public extension UIView {
     }
     
     func dropShadow( offsetX: inout CGFloat, offsetY: inout CGFloat, color: UIColor, opacity: inout Float, radius: inout CGFloat, scale: Bool = true) {
-        layer.masksToBounds = false
+        layer.masksToBounds = clipsToBounds
         layer.shadowOffset = CGSize(width: offsetX, height: offsetY)
         layer.shadowColor = color.cgColor
         layer.shadowOpacity = opacity
         layer.shadowRadius = radius
         layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-        layer.shouldRasterize = true
-        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+        
+        if  !(self is UIImageView) {
+            layer.shouldRasterize = true
+            layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+        }
+        
     }
     
     func circularCorners() {
