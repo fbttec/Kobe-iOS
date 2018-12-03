@@ -51,4 +51,20 @@ public extension UILabel {
         
         self.attributedText = attributedString
     }
+    
+    func setFont(fontName: String, fontSize: CGFloat) {
+        self.font = UIFont(name: fontName, size: fontSize)
+    }
+    
+    func setFontColor(color: UIColor) {
+        self.textColor = color
+    }
+    
+    func configure(text: String, fontName: String="SF Mono Regular", fontSize: CGFloat=15.0, textColor: UIColor=UIColor.black, lineSpacing: CGFloat=0.0, characterSpacing: CGFloat=0.0) {
+        self.text = text
+        self.setFont(fontName: fontName, fontSize: fontSize)
+        self.setFontColor(color: textColor)
+        self.setLineSpacing(lineSpacing: lineSpacing)
+        self.setCharacterSpacing(characterSpacing: characterSpacing)
+    }
 }
